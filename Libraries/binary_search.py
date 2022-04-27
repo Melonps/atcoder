@@ -21,6 +21,8 @@ def lcm(a, b): return a * b // gcd(a, b)  # 最小公倍数
 #[[0, 0, 0], [0, 0, 0]]
 #l[2][3] = 1
 
+# Shift+alt+fでコード成形！
+
 
 INF = float('inf')
 MOD = 10 ** 9 + 7
