@@ -1,3 +1,4 @@
+from calendar import c
 from math import ceil, floor, sqrt, pi, factorial, gcd
 from collections import Counter, deque, OrderedDict
 from itertools import product
@@ -10,7 +11,9 @@ import time
 ##################################
 
 _INPUT = """\
-4 3
+4
+
+
 
 """
 sys.stdin = io.StringIO(_INPUT)
@@ -29,39 +32,45 @@ def s_list(): return list(s_map())
 def s_row(N): return [s_input for _ in range(N)]
 def lcm(a, b): return a * b // gcd(a, b)  # 最小公倍数
 
-#l = [[0 for i in range(3)] for j in range(2)]
-#[[0, 0, 0], [0, 0, 0]]
-#l[2][3] = 1
+# 二次配列系
+# l = [[0 for i in range(3)] for j in range(2)]
+# [[0, 0, 0], [0, 0, 0]]
+# l[2][3] = 1
 
 
-#start = time.time()
-#elapsed_time = time.time() - start
-#print("elapsed_time:{0}".format(elapsed_time) + "[sec]")
+def row_sum(list): return [sum(row) for row in dp]
+
+
+# start = time.time()
+# elapsed_time = time.time() - start
+# print("elapsed_time:{0}".format(elapsed_time) + "[sec]")
 
 # Shift+alt+fでコード成形
 
-
 INF = float('inf')
 MOD = 10 ** 9 + 7
-#start = time.time()
+# start = time.time()
 
 
 ##################################
 ##################################
 
-W, H = i_map()
-W -= 1
-H -= 1
-N = W+H
+N = int(input())
+M = 998244353
 
+X = [1, 1, 1, 1, 1, 1, 1, 1, 1]
 
-def nCr(N, r):
-    bunsi = 1
-    bunbo = 1
-    for i in range(1, r+1):
-        bunbo *= i
-        bunsi *= (N-i+1)
-    return int(bunsi/bunbo)
+for i in range(N-1):
+    x = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+    x[0] = (X[0] + X[1]) % M
+    x[1] = (X[0] + X[1] + X[2]) % M
+    x[2] = (X[1] + X[2] + X[3]) % M
+    x[3] = (X[2] + X[3] + X[4]) % M
+    x[4] = (X[3] + X[4] + X[5]) % M
+    x[5] = (X[4] + X[5] + X[6]) % M
+    x[6] = (X[5] + X[6] + X[7]) % M
+    x[7] = (X[6] + X[7] + X[8]) % M
+    x[8] = (X[7] + X[8]) % M
+    X = x
 
-
-print(nCr(N, W))
+print(sum(X) % M)
